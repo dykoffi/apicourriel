@@ -1,0 +1,171 @@
+{
+    "/Courriel": {
+        "get": {
+            "operationId": "getCourriels",
+            "tags": [
+                "Courriel"
+            ],
+            "description": "\"Returns all Courriels",
+            "responses": {
+                "200": {
+                    "description": "List of Courriels"
+                },
+                "403": {
+                    "description": "Unauthorized"
+                },
+                "500": {
+                    "description": "Internal Error"
+                }
+            }
+        },
+        "post": {
+            "operationId": "addCourriel",
+            "tags": [
+                "Courriel"
+            ],
+            "description": "Add new Courriel",
+            "requestBody": {
+                "content": {
+                    "application/x-www-form-urlencoded": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "expediteur": {
+                                    "type": "string"
+                                },
+                                "destinataire": {
+                                    "type": "string"
+                                },
+                                "object": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": []
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "table created"
+                },
+                "403": {
+                    "description": "Unauthorized"
+                },
+                "500": {
+                    "description": "Internal Error"
+                }
+            }
+        },
+        "parameters": [
+            {
+                "in": "header",
+                "name": "x-access-token",
+                "schema": {
+                    "type": "string"
+                }
+            }
+        ]
+    },
+    "/Courriel/{id}": {
+        "get": {
+            "operationId": "getCourriel",
+            "tags": [
+                "Courriel"
+            ],
+            "description": "Returns specific Courriel designated by id",
+            "responses": {
+                "200": {
+                    "description": "Courriel basic information"
+                },
+                "403": {
+                    "description": "Unauthorized"
+                },
+                "404": {
+                    "description": "Courriel not found"
+                },
+                "500": {
+                    "description": "Internal Error"
+                }
+            }
+        },
+        "put": {
+            "operationId": "updateCourriel",
+            "tags": [
+                "Courriel"
+            ],
+            "description": "Update Courriel",
+            "requestBody": {
+                "content": {
+                    "application/x-www-form-urlencoded": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "expediteur": {
+                                    "type": "string"
+                                },
+                                "destinataire": {
+                                    "type": "string"
+                                },
+                                "object": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": []
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "Courriel updated"
+                },
+                "403": {
+                    "description": "Unauthorized"
+                },
+                "404": {
+                    "description": "Courriel not found"
+                },
+                "500": {
+                    "description": "Internal Error"
+                }
+            }
+        },
+        "delete": {
+            "operationId": "deleteCourriel",
+            "tags": [
+                "Courriel"
+            ],
+            "description": "Delete specific Courriel designated by id",
+            "responses": {
+                "200": {},
+                "403": {
+                    "description": "Unauthorized"
+                },
+                "404": {
+                    "description": "Courriel not found"
+                },
+                "500": {
+                    "description": "Internal Error"
+                }
+            }
+        },
+        "parameters": [
+            {
+                "in": "path",
+                "name": "id",
+                "required": true,
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            {
+                "in": "header",
+                "name": "x-access-token",
+                "schema": {
+                    "type": "string"
+                }
+            }
+        ]
+    }
+}

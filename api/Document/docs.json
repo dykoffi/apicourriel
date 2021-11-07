@@ -1,0 +1,171 @@
+{
+    "/Document": {
+        "get": {
+            "operationId": "getDocuments",
+            "tags": [
+                "Document"
+            ],
+            "description": "\"Returns all Documents",
+            "responses": {
+                "200": {
+                    "description": "List of Documents"
+                },
+                "403": {
+                    "description": "Unauthorized"
+                },
+                "500": {
+                    "description": "Internal Error"
+                }
+            }
+        },
+        "post": {
+            "operationId": "addDocument",
+            "tags": [
+                "Document"
+            ],
+            "description": "Add new Document",
+            "requestBody": {
+                "content": {
+                    "application/x-www-form-urlencoded": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "nom": {
+                                    "type": "string"
+                                },
+                                "taille": {
+                                    "type": "string"
+                                },
+                                "chemin": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": []
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "table created"
+                },
+                "403": {
+                    "description": "Unauthorized"
+                },
+                "500": {
+                    "description": "Internal Error"
+                }
+            }
+        },
+        "parameters": [
+            {
+                "in": "header",
+                "name": "x-access-token",
+                "schema": {
+                    "type": "string"
+                }
+            }
+        ]
+    },
+    "/Document/{id}": {
+        "get": {
+            "operationId": "getDocument",
+            "tags": [
+                "Document"
+            ],
+            "description": "Returns specific Document designated by id",
+            "responses": {
+                "200": {
+                    "description": "Document basic information"
+                },
+                "403": {
+                    "description": "Unauthorized"
+                },
+                "404": {
+                    "description": "Document not found"
+                },
+                "500": {
+                    "description": "Internal Error"
+                }
+            }
+        },
+        "put": {
+            "operationId": "updateDocument",
+            "tags": [
+                "Document"
+            ],
+            "description": "Update Document",
+            "requestBody": {
+                "content": {
+                    "application/x-www-form-urlencoded": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "nom": {
+                                    "type": "string"
+                                },
+                                "taille": {
+                                    "type": "string"
+                                },
+                                "chemin": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": []
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "Document updated"
+                },
+                "403": {
+                    "description": "Unauthorized"
+                },
+                "404": {
+                    "description": "Document not found"
+                },
+                "500": {
+                    "description": "Internal Error"
+                }
+            }
+        },
+        "delete": {
+            "operationId": "deleteDocument",
+            "tags": [
+                "Document"
+            ],
+            "description": "Delete specific Document designated by id",
+            "responses": {
+                "200": {},
+                "403": {
+                    "description": "Unauthorized"
+                },
+                "404": {
+                    "description": "Document not found"
+                },
+                "500": {
+                    "description": "Internal Error"
+                }
+            }
+        },
+        "parameters": [
+            {
+                "in": "path",
+                "name": "id",
+                "required": true,
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            {
+                "in": "header",
+                "name": "x-access-token",
+                "schema": {
+                    "type": "string"
+                }
+            }
+        ]
+    }
+}

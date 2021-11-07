@@ -1,0 +1,13 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "courriel",
+        "description": "gestion des courriels",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3983"
+        }
+    ]
+}

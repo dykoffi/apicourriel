@@ -1,0 +1,165 @@
+{
+    "/Etat": {
+        "get": {
+            "operationId": "getEtats",
+            "tags": [
+                "Etat"
+            ],
+            "description": "\"Returns all Etats",
+            "responses": {
+                "200": {
+                    "description": "List of Etats"
+                },
+                "403": {
+                    "description": "Unauthorized"
+                },
+                "500": {
+                    "description": "Internal Error"
+                }
+            }
+        },
+        "post": {
+            "operationId": "addEtat",
+            "tags": [
+                "Etat"
+            ],
+            "description": "Add new Etat",
+            "requestBody": {
+                "content": {
+                    "application/x-www-form-urlencoded": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "nom": {
+                                    "type": "string"
+                                },
+                                "description": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": []
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "table created"
+                },
+                "403": {
+                    "description": "Unauthorized"
+                },
+                "500": {
+                    "description": "Internal Error"
+                }
+            }
+        },
+        "parameters": [
+            {
+                "in": "header",
+                "name": "x-access-token",
+                "schema": {
+                    "type": "string"
+                }
+            }
+        ]
+    },
+    "/Etat/{id}": {
+        "get": {
+            "operationId": "getEtat",
+            "tags": [
+                "Etat"
+            ],
+            "description": "Returns specific Etat designated by id",
+            "responses": {
+                "200": {
+                    "description": "Etat basic information"
+                },
+                "403": {
+                    "description": "Unauthorized"
+                },
+                "404": {
+                    "description": "Etat not found"
+                },
+                "500": {
+                    "description": "Internal Error"
+                }
+            }
+        },
+        "put": {
+            "operationId": "updateEtat",
+            "tags": [
+                "Etat"
+            ],
+            "description": "Update Etat",
+            "requestBody": {
+                "content": {
+                    "application/x-www-form-urlencoded": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "nom": {
+                                    "type": "string"
+                                },
+                                "description": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": []
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "Etat updated"
+                },
+                "403": {
+                    "description": "Unauthorized"
+                },
+                "404": {
+                    "description": "Etat not found"
+                },
+                "500": {
+                    "description": "Internal Error"
+                }
+            }
+        },
+        "delete": {
+            "operationId": "deleteEtat",
+            "tags": [
+                "Etat"
+            ],
+            "description": "Delete specific Etat designated by id",
+            "responses": {
+                "200": {},
+                "403": {
+                    "description": "Unauthorized"
+                },
+                "404": {
+                    "description": "Etat not found"
+                },
+                "500": {
+                    "description": "Internal Error"
+                }
+            }
+        },
+        "parameters": [
+            {
+                "in": "path",
+                "name": "id",
+                "required": true,
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            {
+                "in": "header",
+                "name": "x-access-token",
+                "schema": {
+                    "type": "string"
+                }
+            }
+        ]
+    }
+}

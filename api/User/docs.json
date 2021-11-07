@@ -1,0 +1,183 @@
+{
+    "/User": {
+        "get": {
+            "operationId": "getUsers",
+            "tags": [
+                "User"
+            ],
+            "description": "\"Returns all Users",
+            "responses": {
+                "200": {
+                    "description": "List of Users"
+                },
+                "403": {
+                    "description": "Unauthorized"
+                },
+                "500": {
+                    "description": "Internal Error"
+                }
+            }
+        },
+        "post": {
+            "operationId": "addUser",
+            "tags": [
+                "User"
+            ],
+            "description": "Add new User",
+            "requestBody": {
+                "content": {
+                    "application/x-www-form-urlencoded": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "nom": {
+                                    "type": "string"
+                                },
+                                "contact": {
+                                    "type": "string"
+                                },
+                                "email": {
+                                    "type": "string"
+                                },
+                                "login": {
+                                    "type": "string"
+                                },
+                                "pass": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": []
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "table created"
+                },
+                "403": {
+                    "description": "Unauthorized"
+                },
+                "500": {
+                    "description": "Internal Error"
+                }
+            }
+        },
+        "parameters": [
+            {
+                "in": "header",
+                "name": "x-access-token",
+                "schema": {
+                    "type": "string"
+                }
+            }
+        ]
+    },
+    "/User/{id}": {
+        "get": {
+            "operationId": "getUser",
+            "tags": [
+                "User"
+            ],
+            "description": "Returns specific User designated by id",
+            "responses": {
+                "200": {
+                    "description": "User basic information"
+                },
+                "403": {
+                    "description": "Unauthorized"
+                },
+                "404": {
+                    "description": "User not found"
+                },
+                "500": {
+                    "description": "Internal Error"
+                }
+            }
+        },
+        "put": {
+            "operationId": "updateUser",
+            "tags": [
+                "User"
+            ],
+            "description": "Update User",
+            "requestBody": {
+                "content": {
+                    "application/x-www-form-urlencoded": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "nom": {
+                                    "type": "string"
+                                },
+                                "contact": {
+                                    "type": "string"
+                                },
+                                "email": {
+                                    "type": "string"
+                                },
+                                "login": {
+                                    "type": "string"
+                                },
+                                "pass": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": []
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "User updated"
+                },
+                "403": {
+                    "description": "Unauthorized"
+                },
+                "404": {
+                    "description": "User not found"
+                },
+                "500": {
+                    "description": "Internal Error"
+                }
+            }
+        },
+        "delete": {
+            "operationId": "deleteUser",
+            "tags": [
+                "User"
+            ],
+            "description": "Delete specific User designated by id",
+            "responses": {
+                "200": {},
+                "403": {
+                    "description": "Unauthorized"
+                },
+                "404": {
+                    "description": "User not found"
+                },
+                "500": {
+                    "description": "Internal Error"
+                }
+            }
+        },
+        "parameters": [
+            {
+                "in": "path",
+                "name": "id",
+                "required": true,
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            {
+                "in": "header",
+                "name": "x-access-token",
+                "schema": {
+                    "type": "string"
+                }
+            }
+        ]
+    }
+}
