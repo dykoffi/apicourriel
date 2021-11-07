@@ -8,8 +8,10 @@ const path = require('path');
 const cookieparser = require('cookie-parser');
 const { saveLog } = require('ciql-secry');
 const { cwd } = require('process');
+const helmet = require('helmet')
 
 app.use(cors());
+app.use(helmet())
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(cwd(), 'public')));

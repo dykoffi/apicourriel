@@ -4,19 +4,19 @@ const { protectField: $ } = require('ciql-secry')
 module.exports = {
 
     Courriel: {
-        attributes: {
+        attrs: {
             expediteur: { type: DataTypes.STRING },
             destinataire: { type: DataTypes.STRING },
             object: { type: DataTypes.STRING },
         },
-        associations: [
+        rels: [
             { type: "belongsToMany", model: "Etat", options: { through: 'Etat_Courriel', onDelete: 'RESTRICT', onUpdate: 'CASCADE' } },
             { type: "hasMany", model: "Document", options: { onDelete: 'RESTRICT', onUpdate: 'CASCADE' } }
         ]
     },
 
     Document: {
-        attributes: {
+        attrs: {
             nom: { type: DataTypes.STRING },
             taille: { type: DataTypes.STRING },
             chemin: { type: DataTypes.STRING },
@@ -26,17 +26,17 @@ module.exports = {
     },
 
     Etat: {
-        attributes: {
+        attrs: {
             nom: { type: DataTypes.STRING },
             description: { type: DataTypes.STRING },
         },
-        associations: [
+        rels: [
             { type: "belongsToMany", model: "Courriel", options: { through: 'Etat_Courriel', onDelete: 'RESTRICT', onUpdate: 'CASCADE' } }
         ]
     },
 
     User: {
-        attributes: {
+        attrs: {
             nom: { type: DataTypes.STRING },
             contact: { type: DataTypes.STRING },
             email: { type: DataTypes.STRING, validate: { isEmail: true } },

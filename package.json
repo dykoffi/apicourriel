@@ -1,33 +1,38 @@
 {
-  "name": "courriel",
-  "version": "1.0.0",
-  "description": "gestion des courriels",
-  "main": "./index.js",
-  "license": "MIT",
-  "private": false,
-  "dependencies": {
-    "ciql-json": "^1.9.5",
-    "ciql-secry": "^1.13.2",
-    "cookie-parser": "^1.4.5",
-    "cors": "^2.8.5",
-    "dotenv": "^10.0.0",
-    "express": "^4.17.1",
-    "helmet": "^4.6.0",
-    "jsonwebtoken": "^8.5.1",
-    "mariadb": "^2.5.4",
-    "morgan": "^1.10.0",
-    "mysql2": "^2.3.0",
-    "pg": "^8.7.1",
-    "pg-hstore": "^2.3.4",
-    "sequelize": "^6.6.2",
-    "swagger-ui-express": "^4.1.6"
-  },
-  "scripts": {
-    "start": "node ./index.js",
-    "test": "jest"
-  },
-  "devDependencies": {
-    "frisby": "^2.1.3",
-    "jest": "^27.3.1"
-  }
+    "name": "courriel",
+    "version": "1.0.0",
+    "description": "gestion des courriels",
+    "main": "./index.js",
+    "license": "MIT",
+    "private": false,
+    "dependencies": {
+        "ciql-json": "^1.9.5",
+        "ciql-secry": "^1.13.2",
+        "cookie-parser": "^1.4.5",
+        "cors": "^2.8.5",
+        "dotenv": "^10.0.0",
+        "express": "^4.17.1",
+        "helmet": "^4.6.0",
+        "jsonwebtoken": "^8.5.1",
+        "mariadb": "^2.5.4",
+        "morgan": "^1.10.0",
+        "mysql2": "^2.3.0",
+        "pg": "^8.7.1",
+        "pg-hstore": "^2.3.4",
+        "sequelize": "^6.6.2",
+        "swagger-ui-express": "^4.1.6"
+    },
+    "scripts": {
+        "start": "node ./index.js",
+        "test": "jest"
+    },
+    "devDependencies": {
+        "frisby": "^2.1.3",
+        "jest": "^27.3.1"
+    },
+    "author": {
+        "name": "edy koffi",
+        "email": "koffiedy@gmail.com",
+        "url": "https://www.linkedin.com/in/edy-koffi-948494192/"
+    }
 }

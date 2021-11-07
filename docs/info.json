@@ -3,7 +3,12 @@
     "info": {
         "title": "courriel",
         "description": "gestion des courriels",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "contact": {
+            "name": "edy koffi",
+            "email": "koffiedy@gmail.com",
+            "url": "https://www.linkedin.com/in/edy-koffi-948494192/"
+        }
     },
     "servers": [
         {
