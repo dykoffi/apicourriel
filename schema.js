@@ -11,7 +11,7 @@ module.exports = {
         },
         associations: [
             { type: "belongsToMany", model: "Etat", options: { through: 'Etat_Courriel', onDelete: 'RESTRICT', onUpdate: 'CASCADE' } },
-            { type: "hasMany", model: "Etat", options: { through: 'Etat_Courriel', onDelete: 'RESTRICT', onUpdate: 'RESTRICT' } }
+            { type: "hasMany", model: "Document", options: { onDelete: 'RESTRICT', onUpdate: 'CASCADE' } }
         ]
     },
 
