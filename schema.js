@@ -20,8 +20,8 @@ module.exports = {
             nom: { type: DataTypes.STRING },
             taille: { type: DataTypes.STRING },
             chemin: { type: DataTypes.STRING },
-        }, association: [
-            { type: "belongsToOne", model: "Courriel", options: { onDelete: 'RESTRICT', onUpdate: 'CASCADE' } }
+        }, rels: [
+            { type: "belongsTo", model: "Courriel", options: { onDelete: 'RESTRICT', onUpdate: 'CASCADE' } }
         ]
     },
 
@@ -42,7 +42,7 @@ module.exports = {
             email: { type: DataTypes.STRING, validate: { isEmail: true } },
             login: { type: DataTypes.TEXT, ...$('login') },
             pass: { type: DataTypes.TEXT, ...$('pass') }
-        },
+        }
     }
 
 
