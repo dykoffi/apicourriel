@@ -1,16 +1,17 @@
 const { DataTypes } = require('sequelize')
-const { protectField: $ } = require('ciql-secry')
+const { protectField: $, init } = require('ciql-secry')
 
-module.exports = {
+module.exports = init({
 
     Courriel: {
         attrs: {
             expediteur: { type: DataTypes.STRING },
             destinataire: { type: DataTypes.STRING },
             object: { type: DataTypes.STRING },
+            hash: { type: DataTypes.STRING },
         },
         rels: [
-            { type: "belongsToMany", model: "Etat", options: { through: 'Etat_Courriel', onDelete: 'RESTRICT', onUpdate: 'CASCADE' } },
+            { type: "belongsToMany", model: "Etat", options: { through: 'Etat_Courriel' } },
             { type: "hasMany", model: "Document", options: { onDelete: 'RESTRICT', onUpdate: 'CASCADE' } }
         ]
     },
@@ -21,7 +22,7 @@ module.exports = {
             taille: { type: DataTypes.STRING },
             chemin: { type: DataTypes.STRING },
         }, rels: [
-            { type: "belongsTo", model: "Courriel", options: { onDelete: 'RESTRICT', onUpdate: 'CASCADE' } }
+            { type: "belongsTo", model: "Courriel", options: { onDelete: 'RESTRICT', onUpdate: "CASCADE" } },
         ]
     },
 
@@ -29,9 +30,10 @@ module.exports = {
         attrs: {
             nom: { type: DataTypes.STRING },
             description: { type: DataTypes.STRING },
+            color: { type: DataTypes.STRING }
         },
         rels: [
-            { type: "belongsToMany", model: "Courriel", options: { through: 'Etat_Courriel', onDelete: 'RESTRICT', onUpdate: 'CASCADE' } }
+            { type: "belongsToMany", model: "Courriel", options: { through: 'Etat_Courriel', onDelete: "RESTRICT", onUpdate: 'CASCADE' } }
         ]
     },
 
@@ -45,5 +47,4 @@ module.exports = {
         }
     }
 
-
-}
+})

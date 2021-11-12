@@ -1,7 +1,7 @@
 "use strict"
 
 const router = require('express').Router()
-const { Courriel } = require('../../db/_relations')
+const { Courriel, Etat, Document } = require('../../db/_relations')
 
 router
 
@@ -14,7 +14,10 @@ router
     .post("/", async (req, res) => {
 
         Courriel.create(req.body)
-            .then(data => { res.status(201).json(data) })
+            .then(data => {
+
+                res.status(201).json(data)
+            })
             .catch(error => { res.status(500).json({ error: error.name, message: error.message }) })
 
     })
@@ -26,9 +29,13 @@ router
     */
 
     .get("/", async (req, res) => {
+        // console.log(req.r);
+        console.log(req.headers['origin']);
 
-        Courriel.findAll({ where: req.query, order: [['id', 'ASC']] })
-            .then(data => { res.json(data) })
+        Courriel.findAll({ where: req.query, include: [{ model: Etat }, { model: Document }], order: [['id', 'ASC']] })
+            .then(data => {
+                res.json(data)
+            })
             .catch(error => { res.status(500).json({ error: error.name, message: error.message }) })
 
     })
