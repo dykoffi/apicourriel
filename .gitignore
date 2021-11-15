@@ -3,3 +3,5 @@ yarn.lock
 .log
 coverage
 hooks
+public/files
+uploads

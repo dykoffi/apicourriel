@@ -26,7 +26,7 @@
             "description": "Add new Courriel",
             "requestBody": {
                 "content": {
-                    "application/x-www-form-urlencoded": {
+                    "multipart/form-data": {
                         "schema": {
                             "type": "object",
                             "properties": {
@@ -38,6 +38,12 @@
                                 },
                                 "object": {
                                     "type": "string"
+                                },
+                                "etatId": {
+                                    "type": "integer"
+                                },
+                                "fichier": {
+                                    "type": "file"
                                 }
                             },
                             "required": []

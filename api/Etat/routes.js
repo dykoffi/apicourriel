@@ -1,7 +1,7 @@
 "use strict"
 
 const router = require('express').Router()
-const { Etat } = require('../../db/_relations')
+const { Etat, Courriel } = require('../../db/_relations')
 
 router
 

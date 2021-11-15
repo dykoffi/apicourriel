@@ -2,6 +2,15 @@
 
 const router = require('express').Router()
 const { Courriel, Etat, Document } = require('../../db/_relations')
+const { db } = require('../../db/_index')
+const Busboy = require('busboy')
+const { join } = require('path')
+const { cwd } = require('process')
+
+const { randomBytes } = require('crypto')
+const { createWriteStream, existsSync, mkdirSync } = require('fs')
+const { extname } = require('path')
+
 
 router
 
@@ -13,12 +22,52 @@ router
 
     .post("/", async (req, res) => {
 
-        Courriel.create(req.body)
-            .then(data => {
+        const t = await db.transaction()
 
-                res.status(201).json(data)
-            })
-            .catch(error => { res.status(500).json({ error: error.name, message: error.message }) })
+        let busboy = new Busboy({ headers: req.headers })
+        let filePath = join(cwd(), 'uploads')
+
+        if (!existsSync(filePath)) mkdirSync(filePath)
+
+        let fields = {}
+        let files = []
+
+        busboy.on('file', (fieldname, file, filename, encoding, mimetype) => {
+
+            let fileSha = randomBytes(32).toString('hex')
+            files.push({ name: filename, path: join('uploads', fileSha + extname(filename)), hash: fileSha })
+
+            file
+                .pipe(createWriteStream(join(filePath, fileSha + extname(filename))))
+
+        })
+
+        busboy.on('field', (fieldname, val, fieldnameTruncated, valTruncated) => {
+            fields[fieldname] = val
+        })
+
+        busboy.on('finish', async () => {
+            try {
+
+                let courriel = await Courriel.create(fields, { transaction: t })
+                let etat = await Etat.findByPk(fields['etatId'], { transaction: t })
+                let documents = await Document.bulkCreate(files, { transaction: t })
+
+                await courriel.addEtat(etat, { transaction: t })
+                await courriel.addDocuments(documents, { transaction: t })
+
+                res.status(201).json(courriel)
+                t.commit()
+
+
+            } catch (error) {
+                await t.rollback();
+                res.status(500).json({ error: error.name, message: error.message })
+            }
+
+        })
+
+        req.pipe(busboy)
 
     })
 
@@ -29,10 +78,8 @@ router
     */
 
     .get("/", async (req, res) => {
-        // console.log(req.r);
-        console.log(req.headers['origin']);
 
-        Courriel.findAll({ where: req.query, include: [{ model: Etat }, { model: Document }], order: [['id', 'ASC']] })
+        Courriel.findAll({ where: req.query, include: [{ model: Etat, attributes: { exclude: "Etat_Courriel" } }, { model: Document, attributes: { exclude: ['path'] } }], order: [['id', 'ASC']] })
             .then(data => {
                 res.json(data)
             })
