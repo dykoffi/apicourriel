@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('test ciql cmd') {
       steps {
-        sh 'ciql'
+        sh 'ciql info inspect'
       }
     }
 
