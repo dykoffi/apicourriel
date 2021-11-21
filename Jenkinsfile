@@ -30,10 +30,9 @@ pipeline {
       }
     }
 
-    stage('Deployer') {
-      agent any
+    stage('') {
       steps {
-        sh 'ciql code publish planetserver --db planetDB'
+        sh 'ciql code publish planetserver'
       }
     }
 
