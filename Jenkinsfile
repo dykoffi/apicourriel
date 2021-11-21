@@ -24,7 +24,13 @@ pipeline {
       }
     }
 
-    stage('tester le projet') {
+    stage('Install npm packages') {
+      steps {
+        sh 'yarn install'
+      }
+    }
+
+     stage('tester le projet') {
       steps {
         sh 'yarn test'
       }

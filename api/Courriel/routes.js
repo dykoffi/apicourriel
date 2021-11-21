@@ -8,7 +8,7 @@ const { join } = require('path')
 const { cwd } = require('process')
 
 const { randomBytes } = require('crypto')
-const { createWriteStream, existsSync, mkdirSync } = require('fs')
+const { createWriteStream, existsSync, mkdirSync, rm, rmSync } = require('fs')
 const { extname } = require('path')
 
 
@@ -79,7 +79,7 @@ router
 
     .get("/", async (req, res) => {
 
-        Courriel.findAll({ where: req.query, include: [{ model: Etat, attributes: { exclude: "Etat_Courriel" } }, { model: Document, attributes: { exclude: ['path'] } }], order: [['id', 'ASC']] })
+        Courriel.findAll({ where: req.query, include: [{ model: Etat, attributes: { exclude: "Etat_Courriel" } }], order: [['id', 'ASC']] })
             .then(data => {
                 res.json(data)
             })
@@ -95,7 +95,7 @@ router
 
     .get("/:id", async (req, res) => {
 
-        Courriel.findByPk(req.params.id)
+        Courriel.findByPk(req.params.id, { include: { model: Document, attributes: { exclude: ['path'] } } })
             .then(data => {
                 if (data !== null) {
                     res.status(200).json(data)
@@ -134,6 +134,12 @@ router
     */
 
     .delete("/:id", async (req, res) => {
+
+        let documents = await Document.findAll({ where: { CourrielId: req.params.id } })
+
+        documents.forEach(doc => {
+            rmSync(join(cwd(), doc.getDataValue("path")))
+        })
 
         Courriel.destroy({ where: { id: req.params.id } })
             .then(data => {
