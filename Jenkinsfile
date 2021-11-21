@@ -25,12 +25,7 @@ pipeline {
     }
 
     stage('Deployment') {
-      agent {
-        node {
-          label 'nodejs1'
-        }
-
-      }
+      agent any
       steps {
         sh 'ciql code publish planetserver'
       }
