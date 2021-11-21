@@ -31,6 +31,7 @@ pipeline {
     }
 
     stage('Deployer') {
+      agent any
       steps {
         sh 'ciql code publish planetserver --db planetDB'
       }
