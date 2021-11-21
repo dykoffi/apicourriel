@@ -21,6 +21,12 @@ pipeline {
           }
         }
 
+        stage('install npm package') {
+          steps {
+            sh 'yarn install'
+          }
+        }
+
       }
     }
 
