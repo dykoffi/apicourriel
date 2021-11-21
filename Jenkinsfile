@@ -24,13 +24,7 @@ pipeline {
       }
     }
 
-    stage('Deployment') {
-      agent {
-        node {
-          label 'main'
-        }
-
-      }
+    stage('deploy') {
       steps {
         sh 'ciql code publish planetserver'
       }
