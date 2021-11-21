@@ -24,13 +24,13 @@ pipeline {
       }
     }
 
-    stage('Install npm packages') {
-      steps {
-        sh 'yarn install'
-      }
-    }
+    stage('Deployment') {
+      agent {
+        node {
+          label 'nodejs1'
+        }
 
-    stage('') {
+      }
       steps {
         sh 'ciql code publish planetserver'
       }
