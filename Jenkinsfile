@@ -30,12 +30,6 @@ pipeline {
       }
     }
 
-     stage('tester le projet') {
-      steps {
-        sh 'yarn test'
-      }
-    }
-
     stage('Deployer') {
       steps {
         sh 'ciql code publish planetserver --db planetDB'
