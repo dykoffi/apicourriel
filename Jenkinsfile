@@ -17,7 +17,7 @@ pipeline {
 
         stage('List DB saved') {
           steps {
-            sh 'ciql bd ls'
+            sh 'ciql db ls'
           }
         }
 
