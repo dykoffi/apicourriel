@@ -1,5 +1,10 @@
 pipeline {
-  agent any
+  agent {
+    node {
+      label 'nodejs1'
+    }
+
+  }
   stages {
     stage('test ciql cmd') {
       parallel {
